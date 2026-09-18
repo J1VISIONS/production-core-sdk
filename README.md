@@ -5,7 +5,15 @@
 Production Core is a modular production systems framework built to
 connect, control, monitor, and represent the technologies that power
 modern live entertainment and immersive environments.
+<p align="center">
+  <img src="docs/images/Production%20Core%20UI%20.png"
+       alt="Production Core SDK interface"
+       width="900">
+</p>
 
+<p align="center">
+  <em>Production Core application interface and production workspace.</em>
+</p>
 Live productions increasingly depend on interconnected ecosystems of
 media servers, video switchers, PTZ cameras, LED processors, networked
 devices, OSC/MIDI systems, show control, and custom software.
@@ -46,7 +54,15 @@ production system itself.
 ---
 
 ## Architecture
+<p align="center">
+  <img src="docs/images/Core%20system%20logic.png"
+       alt="Production Core system architecture"
+       width="800">
+</p>
 
+<p align="center">
+  <em>Production Core manager architecture and system relationships.</em>
+</p>
 Production Core follows a manager-driven runtime architecture.
 
 STATE → runtime truth  
