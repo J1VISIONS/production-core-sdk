@@ -2,9 +2,8 @@
 
 ### A software framework for connected production systems.
 
-Production Core is a modular production systems framework built to
-connect, control, monitor, and represent the technologies that power
-modern live entertainment and immersive environments.
+Production Core is a modular, TouchDesigner-based production systems SDK developed by J1VISIONS to connect, control, monitor, and represent the technologies that power modern live entertainment and immersive environments.
+
 <p align="center">
   <img src="docs/images/Production%20Core%20UI%20.png"
        alt="Production Core SDK interface"
@@ -14,27 +13,63 @@ modern live entertainment and immersive environments.
 <p align="center">
   <em>Production Core application interface and production workspace.</em>
 </p>
-Live productions increasingly depend on interconnected ecosystems of
-media servers, video switchers, PTZ cameras, LED processors, networked
-devices, OSC/MIDI systems, show control, and custom software.
+
+Live productions increasingly depend on interconnected ecosystems of media servers, video switchers, PTZ cameras, LED processors, networked devices, OSC/MIDI systems, show control, and custom software.
 
 Production Core explores a simple question:
 
 > What if these systems could share a common software architecture?
 
-The project is being developed from the perspective of real-world
-touring, live production, media server, networking, and immersive
-technology workflows.
+The project is being developed from the perspective of real-world touring, live production, media server, networking, and immersive technology workflows.
+
+---
+
+## Current Development State
+
+Production Core has reached an **autonomous application runtime milestone**.
+
+The application can cold-start into its operational runtime, bootstrap the MAIN_UI, populate the workspace, and maintain synchronized navigation state across the application's production pages.
+
+### Verified Runtime Milestones
+
+- Autonomous Production Core application cold start
+- `AppExtension`: Ready / `booted=True` / `mode=dev`
+- `MainUIRuntimeBinder`: `bootstrapped=True`
+- MAIN_UI automatically populates on application launch
+- Header, footer, sidebar, and workspace runtime systems integrated
+- Workspace page architecture operational
+- Active-page visual highlighting implemented
+- Exact-row sidebar navigation verified
+- Canonical navigation/state synchronization working
+- System Map runtime integrated into MAIN_UI
+- System Map nodes render inside the application workspace
+- System Map labels bind to runtime data
+- Navigation between System Map and other workspace pages verified
+- Defensive invalid-row behavior verified
+- Operator testing across all sidebar pages passed
+
+### Application Workspace
+
+Production Core currently exposes ten primary workspace pages:
+
+1. Dashboard
+2. System Map
+3. PTZ
+4. Media
+5. Modules
+6. Devices
+7. Network
+8. OSC
+9. Logs
+10. Settings
 
 ---
 
 ## The Vision
 
-Production Core is designed to become a software layer between
-production hardware, protocols, applications, and operators.
+Production Core is designed to become a software layer between production hardware, protocols, applications, and operators.
 
-Instead of every integration becoming another isolated control system,
-Production Core provides reusable architecture for:
+Instead of every integration becoming another isolated control system, Production Core provides reusable architecture for:
 
 - State management
 - Event-driven communication
@@ -48,12 +83,12 @@ Production Core provides reusable architecture for:
 
 The long-term goal is not simply remote control.
 
-The goal is to create a framework capable of understanding the
-production system itself.
+The goal is to create a framework capable of understanding the production system itself.
 
 ---
 
 ## Architecture
+
 <p align="center">
   <img src="docs/images/Core%20system%20logic.png"
        alt="Production Core system architecture"
@@ -63,6 +98,7 @@ production system itself.
 <p align="center">
   <em>Production Core manager architecture and system relationships.</em>
 </p>
+
 Production Core follows a manager-driven runtime architecture.
 
 STATE → runtime truth  
@@ -82,17 +118,63 @@ State represents **what is true right now**.
 
 Events allow the system to react when that truth changes.
 
+### Runtime Flow
+
+```text
+PROJECT OPEN
+     │
+     ▼
+AppExtension
+Ready / booted=True / mode=dev
+     │
+     ▼
+MainUIRuntimeBinder
+bootstrapped=True
+     │
+     ▼
+MAIN_UI
+     │
+     ├── Header
+     ├── Sidebar
+     ├── Workspace
+     └── Footer
+              │
+              ▼
+       Workspace Pages
+              │
+              ▼
+     Runtime-bound systems
+```
+
+---
+
+## Navigation Reliability
+
+Recent development work corrected a UI coordinate-space mismatch between canonical navigation data and the rendered sidebar list.
+
+The canonical `navigation_items` table contains a header row. That header is removed before the data reaches the visible List COMP, making rendered rows already zero-based. The previous callback applied the source-table header offset again, producing an off-by-one page mapping.
+
+The corrected contract maps visible rows directly to page IDs:
+
+```python
+cb._ListRowToVisibleRow(..., 2) == 2
+sb.GetPageIdForVisibleRow(2) == 'ptz'
+cb._ListRowToVisibleRow(..., -1) is None
+```
+
+These checks passed, followed by successful operator testing across all ten sidebar pages.
+
+This debugging milestone reinforced an important architectural rule: **canonical data coordinates and rendered UI coordinates must have an explicit, testable mapping contract.**
+
 ---
 
 ## Current Status
 
-🚧 Production Core is under active development.
+🚧 **Production Core is under active development.**
 
-The public repository is currently being prepared for its first
-developer release.
+The runtime foundation, application boot process, MAIN_UI integration, workspace navigation, and Live System Map runtime are operational.
 
-Documentation, architecture references, examples, and selected
-components will be published incrementally.
+The public repository currently focuses on project documentation and architecture while Production Core is prepared for a future developer release. Source availability, packaging, installation requirements, and licensing are still being evaluated.
 
 ---
 
@@ -113,30 +195,45 @@ Production Core is being designed around real production environments:
 
 ## Project Philosophy
 
-Production technology should behave like an interconnected system,
-not a collection of isolated devices.
+Production technology should behave like an interconnected system, not a collection of isolated devices.
 
-Production Core is an exploration of what happens when software
-engineering, production engineering, networking, and real-time
-technology are treated as one discipline.
+Production Core is an exploration of what happens when software engineering, production engineering, networking, and real-time technology are treated as one discipline.
 
 ---
 
-## Roadmap
+## Development Roadmap
 
-Production Core is actively evolving toward:
+### Operational / Integrated
 
-- Device discovery
-- OSC integration
-- PTZ control
-- Video switcher integration
+- Application lifecycle and autonomous boot
+- Manager-driven runtime architecture
+- MAIN_UI runtime binding
+- Ten-page workspace architecture
+- State-synchronized sidebar navigation
+- Live System Map runtime integration
+- Runtime node rendering and label binding
+- PTZ architecture and development foundation
+
+### Active / Upcoming
+
 - Media server integration
-- Live System Map
-- External control surfaces
+- OSC workflows and external control surfaces
+- Expanded device discovery
+- Video switcher integration
 - Production network monitoring
+- System Map interaction and visualization improvements
 - Extensible third-party modules
+- Public developer documentation and packaging
 
-A detailed public roadmap is coming soon.
+The roadmap will continue to evolve as Production Core moves from internal development toward broader developer and operator use.
+
+---
+
+## Public Repository Scope
+
+This repository currently documents Production Core's architecture, development progress, selected interfaces, and public engineering milestones.
+
+The complete internal TouchDesigner project, implementation source, deployment configuration, and unreleased integrations are not currently distributed through this repository.
 
 ---
 
@@ -144,5 +241,4 @@ A detailed public roadmap is coming soon.
 
 Production Core SDK is developed by J1VISIONS.
 
-**Experience Systems Engineering for live entertainment and
-immersive technology.**
+**Experience Systems Engineering for live entertainment and immersive technology.**
