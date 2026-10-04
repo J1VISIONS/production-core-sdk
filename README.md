@@ -5,13 +5,13 @@
 Production Core is a modular, TouchDesigner-based production systems SDK developed by J1VISIONS to connect, control, monitor, and represent the technologies that power modern live entertainment and immersive environments.
 
 <p align="center">
-  <img src="docs/images/Production%20Core%20UI%20.png"
-       alt="Production Core SDK interface"
-       width="900">
+  <img src="docs/images/production-core-main-ui-runtime.png"
+       alt="Production Core MAIN_UI runtime with System Map workspace"
+       width="1000">
 </p>
 
 <p align="center">
-  <em>Production Core application interface and production workspace.</em>
+  <em>Current Production Core MAIN_UI runtime with the System Map workspace active. Node widgets are runtime-rendered; device-specific labels and metadata remain a future integration milestone.</em>
 </p>
 
 Live productions increasingly depend on interconnected ecosystems of media servers, video switchers, PTZ cameras, LED processors, networked devices, OSC/MIDI systems, show control, and custom software.
@@ -42,7 +42,6 @@ The application can cold-start into its operational runtime, bootstrap the MAIN_
 - Exact-row sidebar navigation verified
 - Canonical navigation/state synchronization working
 - System Map runtime integrated into MAIN_UI
-- System Map nodes render inside the application workspace
 - System Map node widgets render dynamically inside the application workspace
 - Device-specific System Map metadata and labeling remain a future integration milestone
 - Navigation between System Map and other workspace pages verified
@@ -63,6 +62,18 @@ Production Core currently exposes ten primary workspace pages:
 8. OSC
 9. Logs
 10. Settings
+
+### Runtime UI Composition
+
+<p align="center">
+  <img src="docs/images/production-core-layout-composition.png"
+       alt="Production Core runtime layout composition showing header, sidebar, workspace, and footer components"
+       width="1000">
+</p>
+
+<p align="center">
+  <em>The MAIN_UI is composed from independently managed header, sidebar, workspace, and footer runtime components.</em>
+</p>
 
 ---
 
