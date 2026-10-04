@@ -28,7 +28,7 @@ Production Core is currently under active development. Until a formal public ver
 - Canonical navigation/state synchronization.
 - System Map runtime integration inside MAIN_UI.
 - Runtime System Map node rendering inside the application workspace.
-- Runtime data binding for System Map labels.
+- Runtime System Map node widget rendering with placeholder labels; device-specific metadata and labeling remain future work.
 - Navigation support between System Map and other workspace pages.
 - Defensive handling for invalid sidebar rows.
 
