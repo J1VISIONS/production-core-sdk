@@ -43,7 +43,8 @@ The application can cold-start into its operational runtime, bootstrap the MAIN_
 - Canonical navigation/state synchronization working
 - System Map runtime integrated into MAIN_UI
 - System Map nodes render inside the application workspace
-- System Map labels bind to runtime data
+- System Map node widgets render dynamically inside the application workspace
+- Device-specific System Map metadata and labeling remain a future integration milestone
 - Navigation between System Map and other workspace pages verified
 - Defensive invalid-row behavior verified
 - Operator testing across all sidebar pages passed
@@ -172,7 +173,7 @@ This debugging milestone reinforced an important architectural rule: **canonical
 
 🚧 **Production Core is under active development.**
 
-The runtime foundation, application boot process, MAIN_UI integration, workspace navigation, and Live System Map runtime are operational.
+The runtime foundation, application boot process, MAIN_UI integration, workspace navigation, and System Map node rendering are operational. Device-specific System Map metadata and labeling are not yet implemented.
 
 The public repository currently focuses on project documentation and architecture while Production Core is prepared for a future developer release. Source availability, packaging, installation requirements, and licensing are still being evaluated.
 
@@ -211,7 +212,7 @@ Production Core is an exploration of what happens when software engineering, pro
 - Ten-page workspace architecture
 - State-synchronized sidebar navigation
 - Live System Map runtime integration
-- Runtime node rendering and label binding
+- Runtime System Map node rendering
 - PTZ architecture and development foundation
 
 ### Active / Upcoming
