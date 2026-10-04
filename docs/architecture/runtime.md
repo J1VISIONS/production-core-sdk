@@ -272,11 +272,11 @@ The System Map is integrated into the actual MAIN_UI workspace.
 Current verified behavior includes:
 
 - System Map nodes render inside the application workspace.
-- Node labels bind to runtime data.
+- Node widgets currently use placeholder labels; device-specific metadata and labeling are not yet implemented.
 - The operator can navigate away from and back to System Map through the sidebar.
 - System Map navigation participates in the same canonical page/state synchronization as the other workspace pages.
 
-This milestone moves the System Map from isolated development infrastructure into visible application behavior.
+This milestone moves the System Map from isolated development infrastructure into visible application behavior while keeping device-specific metadata and labeling as future integration work.
 
 ---
 
